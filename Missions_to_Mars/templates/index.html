@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/solar/bootstrap.min.css">
+    <title>Mission To Mars</title>
+    <style>
+        .col-sm>img {
+            max-width: 300px !important;
+        }
+
+        #table {
+            /* background-color: #f4f4f4 !important; */
+        }
+
+        body {
+            color: #f4f4f4 !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class='col-md-12 text-center mt-5'>
+        <h1 class='mx-auto'>Mission To Mars</h1>
+        <button class="btn btn-success"><a href='/scrape'>Scrape New Data</a></button>
+    </div>
+
+    <div class="col-md-12">
+        <h2>Latest Mars News</h2>
+        <h4>{{ data.news_title }}</h4>
+        <p>{{ data.news_p }}</p>
+    </div>
+
+    <div class="container">
+        <div class="col-md-8">
+            <h4>Featured Mars Image</h4>
+            <img src="{{ data.featured_image }}" alt="">
+        </div>
+
+        <div class="col-md-4">
+            <div class="card" style="width: 1000px;">
+                <div class="card-title text-center">
+                    <h4>Current Weather on Mars</h4>
+                    <div class="card-body">{{ data.weather }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id='table'>
+        {{ data.marsFacts|safe }}
+    </div>
+
+
+    <h1 class='text-center'>Mars Hemispheres</h1>
+    <div class="container">
+        <div class="row">
+            <div class="card mx-auto">
+                <div class="col-sm"><img src="{{ data.hemispheres[0].img_url }}" alt=""></div>
+                <div class="card-text">
+                    <p>{{ data.hemispheres[0].title }}</p>
+                </div>
+            </div>
+            <div class="card mx-auto">
+                <div class="col-sm"><img src="{{ data.hemispheres[1].img_url }}" alt=""></div>
+                <div class="card-text">
+                    <p>{{ data.hemispheres[1].title }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card mx-auto">
+                <div class="col-sm"><img src="{{ data.hemispheres[2].img_url }}" alt=""></div>
+                <div class="card-text">
+                    <p>{{ data.hemispheres[2].title }}</p>
+                </div>
+            </div>
+            <div class="card mx-auto">
+                <div class="col-sm"><img src="{{ data.hemispheres[3].img_url }}" alt=""></div>
+                <div class="card-text">
+                    <p>{{ data.hemispheres[3].title }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>

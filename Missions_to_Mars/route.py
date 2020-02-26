@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 # from scrape_mars import scrape
 import scrape_mars
 # from scrape_mars import spaceData
@@ -16,17 +16,23 @@ app = Flask(__name__)
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/mars_db'
 mongo = PyMongo(app)
 
-# Used imported scrape function
-# scrape()
+# Used imported scrape function / Insert into DB
 
-# Insert into db
-# collection.insert_many(spaceData)
 @app.route('/scrape')
 def scrape():
     table = mongo.db.marsdata
     spaceData = scrape_mars.scrape()
     table.update({}, spaceData, upsert=True)
-    return spaceData
+    # return spaceData
+    return redirect('/')
+
+
+# Index route
+@app.route('/')
+def index():
+    data = mongo.db.marsdata.find_one()
+    print(data)
+    return render_template('index.html',data=data)
 
 
 if __name__ == "__main__":

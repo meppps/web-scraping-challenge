@@ -27,11 +27,14 @@ def scrape():
     print(newsTitle)
 
 
-    # !!!! NEEDS PARAGRAPH !!!! #
+
+    # Article preview
+    newsP = soup.find('div',class_='rollover_description_inner').text.split('\n')[1]
+    newsP
 
 
     # -- FEATURED IMAGE -- #
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = Browser('chrome', **executable_path, headless=True)
 
 
     # Get featured nasa image
@@ -58,7 +61,9 @@ def scrape():
     # -- MARS WEATHER -- #
     url = 'https://twitter.com/marswxreport?lang=en'
     browser.visit(url)
-
+    
+    time.sleep(1)
+    
     # get first tweet
     weather = browser.find_by_tag('article').value
 
@@ -116,17 +121,10 @@ def scrape():
         time.sleep(1)
 
 
-    # Return all as dictionary
-    # spaceData = {
-    #     'news_title':newsTitle,
-    #     'featured_image':featuredImage,
-    #     'weather':weather,
-    #     'marsFacts':marsFacts,
-    #     'hems':hemList
-    # }
 
     spaceData = {}
     spaceData['news_title'] = newsTitle
+    spaceData['news_p'] = newsP
     spaceData['featured_image'] = featuredImage
     spaceData['weather'] = weather
     spaceData['marsFacts'] = table
@@ -134,23 +132,5 @@ def scrape():
 
     return spaceData
 
-    # return {
-    #     'news_title':newsTitle,
-    #     'featured_image':featuredImage,
-    #     'weather':weather,
-    #     'marsFacts':marsFacts,
-    #     'hems':hemList
-    # }
 
-    # print(spaceData)
-
-    # return spaceData
-
-
-# def scrape():
-#     spaceData = {}
-#     spaceData['headline'] = 'an interesting title'
-#     spaceData['img'] = 'an interesting image'
-
-#     return spaceData
 
