@@ -83,7 +83,9 @@ def scrape():
     marsFacts = tables[0]
     marsFacts
 
-    marsFacts.to_html('marsTable.html')
+    table = marsFacts.to_html()
+    table = table.replace('\n','')
+    print(table)
 
     time.sleep(1)
 
@@ -115,15 +117,40 @@ def scrape():
 
 
     # Return all as dictionary
-    spaceData = {
-        'news_title':newsTitle,
-        'featured_image':featuredImage,
-        'weather':weather,
-        'marsFacts':marsFacts,
-        'hems':hemList
-    }
-    print(spaceData)
+    # spaceData = {
+    #     'news_title':newsTitle,
+    #     'featured_image':featuredImage,
+    #     'weather':weather,
+    #     'marsFacts':marsFacts,
+    #     'hems':hemList
+    # }
+
+    spaceData = {}
+    spaceData['news_title'] = newsTitle
+    spaceData['featured_image'] = featuredImage
+    spaceData['weather'] = weather
+    spaceData['marsFacts'] = table
+    spaceData['hemispheres'] = hemList
+
+    return spaceData
+
+    # return {
+    #     'news_title':newsTitle,
+    #     'featured_image':featuredImage,
+    #     'weather':weather,
+    #     'marsFacts':marsFacts,
+    #     'hems':hemList
+    # }
+
+    # print(spaceData)
+
+    # return spaceData
 
 
+# def scrape():
+#     spaceData = {}
+#     spaceData['headline'] = 'an interesting title'
+#     spaceData['img'] = 'an interesting image'
 
+#     return spaceData
 
